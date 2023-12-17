@@ -162,13 +162,15 @@ func LoginPage(res http.ResponseWriter, req *http.Request) {
 		}
 
 		if userList.Users[username].Username == "" {
-			http.Error(res, "Invalid account", http.StatusForbidden)
+			res.WriteHeader(http.StatusBadRequest)
+			tpl.ExecuteTemplate(res, "login.gohtml", "Invalid Account")
 			return
 		}
 
 		err := bcrypt.CompareHashAndPassword(userList.Users[username].Password, []byte(pwd))
 		if err != nil {
-			http.Error(res, "Invalid account", http.StatusForbidden)
+			res.WriteHeader(http.StatusBadRequest)
+			tpl.ExecuteTemplate(res, "login.gohtml", "Invalid Account")
 			return
 		}
 
