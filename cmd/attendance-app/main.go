@@ -12,12 +12,6 @@ var tpl *template.Template
 var userList attendance.UserList
 var mapUserSessions = map[string]string{}
 
-// func init() {
-// 	tpl = template.Must(template.ParseGlob("templates/*"))
-// 	attendance.LoadData()
-// 	// fmt.Println(userList)
-// }
-
 func main() {
 	// The main function will listen to port 5332 and handle all requests to the server
 	http.Handle("/", http.HandlerFunc(attendance.IndexPage))
@@ -30,6 +24,14 @@ func main() {
 
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 
+	certFile := "cert/cert.pem"
+	keyFile := "cert/key.pem"
+
 	fmt.Println("Listening on port 5332..")
-	http.ListenAndServe(":5332", nil)
+	// http.ListenAndServe(":5332", nil)
+
+	err := http.ListenAndServeTLS(":5332", certFile, keyFile, nil)
+	if err != nil {
+		fmt.Println("Error when listening to port:", err)
+	}
 }
