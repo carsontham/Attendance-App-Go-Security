@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+<body>
+
+{{if .CurUser}}
+    <h2> Welcome {{.CurUser.Username}}<br> </h2>
+    <h3> Attendance Taking List <h3>
+
+<style>
+    td, th {
+        padding: 10px;
+    }
+</style>
+    <table border="1">
+    <tr>
+        <th>User ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Checked In</th>
+        <th>Time In</th>
+    </tr>
+    {{range .UserList.Users}}
+        {{if ne .Username "admin"}}
+    <tr>
+        <td>{{.Username}}</td>
+        <td>{{.FirstName}}</td>
+        <td>{{.LastName}}</td>
+        <td>{{.CheckedIn}}</td>
+        <td>{{.TimeIn}}</td>
+    </tr>
+        {{end}}
+    {{end}}
+</table>
+
+    Select the output format you want the attendance list to be in:
+
+    <form action="/generate" method="post">
+    <div>
+    <input type="radio" name="format" value="JSON" checked="checked">
+    <label for="json"> JSON </label>
+    <input type="radio" name="format" value="XML">
+    <label for="xml"> XML </label>
+    </div>    
+    <input type="submit" name="generate" value="Generate Attendance List">
+    </form>
+
+<h2><a href="/signup">Create new student</a></h2>
+<h2><a href="/logout">Logout</a></h2>
+{{else}}
+<h2>You are currently either not logged in or need to sign up for an account.</h2>
+<h2><a href="/signup">Sign Up</a></h2>
+<h2><a href="/login">Login</a></h2>
+{{end}}
+
+</body>
+</html>

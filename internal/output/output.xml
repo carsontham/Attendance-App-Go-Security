@@ -1,0 +1,70 @@
+<Output>
+  <Username>09</Username>
+  <FirstName>Pau</FirstName>
+  <LastName>Pau</LastName>
+  <CheckedIn>false</CheckedIn>
+  <TimeIn></TimeIn>
+</Output>
+<Output>
+  <Username>01</Username>
+  <FirstName>John </FirstName>
+  <LastName>Tan</LastName>
+  <CheckedIn>true</CheckedIn>
+  <TimeIn>2023-12-07 16:47:24</TimeIn>
+</Output>
+<Output>
+  <Username>04</Username>
+  <FirstName>Mike</FirstName>
+  <LastName>Ross</LastName>
+  <CheckedIn>true</CheckedIn>
+  <TimeIn>2023-12-05 16:54:51</TimeIn>
+</Output>
+<Output>
+  <Username>05</Username>
+  <FirstName>John</FirstName>
+  <LastName>Snow</LastName>
+  <CheckedIn>true</CheckedIn>
+  <TimeIn>2023-12-07 18:20:13</TimeIn>
+</Output>
+<Output>
+  <Username>07</Username>
+  <FirstName>Jerry</FirstName>
+  <LastName>Teo</LastName>
+  <CheckedIn>false</CheckedIn>
+  <TimeIn></TimeIn>
+</Output>
+<Output>
+  <Username>10</Username>
+  <FirstName>Kai</FirstName>
+  <LastName>Kai</LastName>
+  <CheckedIn>true</CheckedIn>
+  <TimeIn>2023-12-07 18:23:21</TimeIn>
+</Output>
+<Output>
+  <Username>02</Username>
+  <FirstName>Dan</FirstName>
+  <LastName>Paul</LastName>
+  <CheckedIn>false</CheckedIn>
+  <TimeIn></TimeIn>
+</Output>
+<Output>
+  <Username>03</Username>
+  <FirstName>Tan</FirstName>
+  <LastName>Lee</LastName>
+  <CheckedIn>false</CheckedIn>
+  <TimeIn></TimeIn>
+</Output>
+<Output>
+  <Username>06</Username>
+  <FirstName>Harvey</FirstName>
+  <LastName>Spectar</LastName>
+  <CheckedIn>true</CheckedIn>
+  <TimeIn>2023-12-07 16:51:16</TimeIn>
+</Output>
+<Output>
+  <Username>08</Username>
+  <FirstName>Tina</FirstName>
+  <LastName>Lee</LastName>
+  <CheckedIn>false</CheckedIn>
+  <TimeIn></TimeIn>
+</Output>

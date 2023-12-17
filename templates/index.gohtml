@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+<body>
+
+<h1>Welcome to the Attendance Taking Application Portal.</h1>
+
+{{if .FirstName}}
+    Welcome User {{.Username}}<br>
+    Your First name is {{.FirstName}}<br>
+    Your Last name is {{.LastName}}<br>
+    
+    {{if .CheckedIn}}
+    You have checked in at {{.TimeIn}}
+    {{else}}
+    <form action="/checkin" method="post">
+    <input type="submit" value="Check In">
+    </form>
+    {{end}}
+
+<h2><a href="/logout">Logout</a></h2>
+{{else}}
+<h2>You are currently either not logged in. Sign in using your student id to checkin your attendance. </h2>
+<h2><a href="/login">Login</a></h2>
+{{end}}
+
+</body>
+</html>

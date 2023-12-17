@@ -1,0 +1,54 @@
+Instructions
+Minimal Requirement
+
+1. Material covered in Networking in Go
+    1. Net\Http
+    2. Templates
+    3. XML / JSON
+    4. Cookies
+    5. Sessions using UUID
+
+2. The application shall consist of the following roles
+    1. Admin
+    2. End Users / Participants
+
+3. The application shall allow the user to do the following operations.
+    1. Login / Logout
+    2. Check in Attendance
+
+4. Upon taking attendance, the application shall record the time and date of the attendance.
+
+5. The minimal documentation shall make use of Go Docs.
+    1. Documentation shall be clear / simple / consistent in style and content.
+
+6. The application shall allow uploading of list of students / participants prior to starting by the admin.
+
+7. The list of students to be loaded shall be in either of the following format (Options)
+    1. XML
+    2. JSON
+    3. txt
+    4. CSV
+
+8. The application shall store the list of users as map or struct.
+
+9. The application shall run on 127.0.0.1:5332
+
+10. The admin shall trigger the creation of the attendance list.
+
+11. The application shall output either one of the following: (Options)
+    1. JSON file
+    2. XML file
+    3. CSV
+    4. Excel
+    5. PDF
+    6. .Docx
+    7. .txt
+
+Additional Enhancements (Optional)
+
+    1. Additional enhancements will be up to the individual to add upon.
+    2. User Interface for ease of use
+    3. Advance mapping of users / data
+    4. Additional pages for navigation if any.
+
+The application along with all deliverables shall be delivered to Olivia for assessment by BEN who shall extract all information and send to her.
