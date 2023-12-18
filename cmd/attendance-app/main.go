@@ -20,12 +20,12 @@ func main() {
 	router.Use(attendance.LoggingMiddleware)
 	// The main function will listen to port 5332 and handle all requests to the server
 	router.Handle("/", http.HandlerFunc(attendance.IndexPage))
-	router.Handle("/signup", http.HandlerFunc(attendance.SignupPage))
+	router.Handle("/signup", attendance.IsAdmin(http.HandlerFunc(attendance.SignupPage)))
 	router.Handle("/login", http.HandlerFunc(attendance.LoginPage))
 	router.Handle("/logout", http.HandlerFunc(attendance.LogoutPage))
-	router.Handle("/checkin", http.HandlerFunc(attendance.Checkin))
-	router.Handle("/admin", http.HandlerFunc(attendance.Admin))
-	router.Handle("/generate", http.HandlerFunc(attendance.Generate))
+	router.Handle("/checkin", attendance.IsStudent(http.HandlerFunc(attendance.Checkin)))
+	router.Handle("/admin", attendance.IsAdmin(http.HandlerFunc(attendance.Admin)))
+	router.Handle("/generate", attendance.IsAdmin(http.HandlerFunc(attendance.Generate)))
 
 	router.Handle("/favicon.ico", http.NotFoundHandler())
 
