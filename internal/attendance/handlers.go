@@ -3,6 +3,7 @@ package attendance
 import (
 	"fmt"
 	"html"
+	"log"
 	"net/http"
 	"regexp"
 
@@ -15,6 +16,7 @@ import (
 func LogoutPage(res http.ResponseWriter, req *http.Request) {
 	myCookie, err := req.Cookie("userCookie")
 	if err != nil {
+		log.Println("Error when getting cookie:", err)
 		http.Redirect(res, req, "/", http.StatusSeeOther)
 		return
 	}
@@ -23,7 +25,7 @@ func LogoutPage(res http.ResponseWriter, req *http.Request) {
 	SaveData(userList, "data.json")
 	myCookie.MaxAge = -1
 	myCookie.Value = ""
-
+	log.Println("User successfully logged out")
 	http.SetCookie(res, myCookie)
 	http.Redirect(res, req, "/", http.StatusSeeOther)
 }
@@ -55,6 +57,7 @@ func LoginPage(res http.ResponseWriter, req *http.Request) {
 
 		err := bcrypt.CompareHashAndPassword(userList.Users[username].Password, []byte(pwd))
 		if err != nil {
+			log.Println("Error in Login")
 			res.WriteHeader(http.StatusBadRequest)
 			tpl.ExecuteTemplate(res, "login.gohtml", "Invalid Account")
 			return
@@ -71,7 +74,6 @@ func LoginPage(res http.ResponseWriter, req *http.Request) {
 			http.Redirect(res, req, "/", http.StatusSeeOther)
 			return
 		}
-		//return
 	}
 	tpl.ExecuteTemplate(res, "login.gohtml", nil)
 }
@@ -79,6 +81,7 @@ func LoginPage(res http.ResponseWriter, req *http.Request) {
 // The admin function will handle all requests to the admin page
 // The admin page will display all users and their information
 func Admin(res http.ResponseWriter, req *http.Request) {
+	log.Println("Loading Admin Page")
 	curUser := getCurUser(res, req)
 	adminData := AdminData{
 		CurUser:  curUser,
@@ -86,8 +89,7 @@ func Admin(res http.ResponseWriter, req *http.Request) {
 	}
 	err := tpl.ExecuteTemplate(res, "admin.gohtml", adminData)
 	if err != nil {
-		fmt.Println("Error in Admin Page")
-		fmt.Println(err)
+		log.Println("Error in Admin Page", err)
 	}
 }
 
@@ -104,22 +106,20 @@ func IndexPage(res http.ResponseWriter, req *http.Request) {
 			}
 			err := tpl.ExecuteTemplate(res, "admin.gohtml", adminData)
 			if err != nil {
-				fmt.Println("Error in Admin Page")
-				fmt.Println(err)
+				log.Println("Error in Admin Page", err)
+
 			}
 		} else {
 			err := tpl.ExecuteTemplate(res, "index.gohtml", curUser)
 			if err != nil {
-				fmt.Println("Error in Index Page")
-				fmt.Println(err)
+				log.Println("Error in Index Page", err)
 			}
 		}
 	} else {
-		fmt.Println("No User Logged In")
+		log.Println("No User Logged In")
 		err := tpl.ExecuteTemplate(res, "index.gohtml", nil)
 		if err != nil {
-			fmt.Println("Error in Login Page")
-			fmt.Println(err)
+			log.Println("Error in Login Page", err)
 		}
 	}
 }
@@ -129,7 +129,7 @@ func SignupPage(res http.ResponseWriter, req *http.Request) {
 	if req.Method == http.MethodPost {
 		err := createNewUser(res, req)
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 			return
 		}
 		http.Redirect(res, req, "/", http.StatusSeeOther)

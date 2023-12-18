@@ -2,7 +2,7 @@ package attendance
 
 import (
 	"errors"
-	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -21,6 +21,7 @@ func createNewUser(res http.ResponseWriter, req *http.Request) error {
 		// check if username exist/ taken
 		if _, ok := userList.Users[username]; ok {
 			http.Error(res, "Username already taken", http.StatusForbidden)
+			log.Println("Error in creating new user")
 			return errors.New("username already taken")
 		}
 
@@ -37,7 +38,7 @@ func createNewUser(res http.ResponseWriter, req *http.Request) error {
 			LastName:  lastname,
 		}
 		userList.Users[username] = curUser
-		fmt.Printf("New User %v Created", username)
+		log.Printf("New User %v Created", username)
 		//createSessionCookie(res, username)
 		SaveData(userList, "data.json")
 
@@ -63,7 +64,7 @@ func Checkin(res http.ResponseWriter, req *http.Request) {
 func getCurUser(res http.ResponseWriter, req *http.Request) User {
 	myCookie, err := req.Cookie("userCookie")
 	if err != nil {
-		fmt.Println("No Cookie here")
+		log.Println("No Cookie here")
 		return User{}
 	}
 	username := userList.CurSession[myCookie.Value]
